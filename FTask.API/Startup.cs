@@ -23,6 +23,7 @@ using FTask.Repository;
 using FTask.Service;
 using Microsoft.AspNetCore.Identity;
 using FTask.API.Mapper;
+using System.Runtime;
 
 namespace FTask.API
 {
@@ -277,9 +278,13 @@ namespace FTask.API
                     DisableGlobalLocks = true,
                 });
             });
-            
 
-            //services.AddHangfireServer();
+
+            services.AddStackExchangeRedisCache(option =>
+            {
+                option.Configuration = Configuration.GetConnectionString(Configuration["Redis:RedisURL"]!);
+                option.InstanceName = Configuration["Redis:InstanceName"];
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

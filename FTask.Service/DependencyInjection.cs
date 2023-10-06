@@ -1,8 +1,12 @@
-﻿using FTask.Repository.IRepository;
+﻿using FTask.Repository.Entity;
+using FTask.Repository.Identity;
+using FTask.Repository.IRepository;
+using FTask.Service.Caching;
 using FTask.Service.IService;
 using FTask.Service.Validation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Task = FTask.Repository.Entity.Task;
 
 namespace FTask.Service;
 
@@ -30,6 +34,21 @@ public static class DependencyInjection
         #region Validation
         services.AddSingleton<ICheckQuantityTaken, CheckQuantityTaken>();
         services.AddSingleton<ICheckSemesterPeriod, CheckSemesterPeriod>();
+        #endregion
+
+        #region Distributed Cache
+        services.AddSingleton<ICacheService<Subject, int>, CacheService<Subject, int>>();
+        services.AddSingleton<ICacheService<Department, int>, CacheService<Department, int>>();
+        services.AddSingleton<ICacheService<Lecturer, Guid>, CacheService<Lecturer, Guid>>();
+        services.AddSingleton<ICacheService<Semester, int>, CacheService<Semester, int>>();
+        services.AddSingleton<ICacheService<Task, int>, CacheService<Task, int>>();
+        services.AddSingleton<ICacheService<TaskActivity, int>, CacheService<TaskActivity, int>>();
+        services.AddSingleton<ICacheService<TaskLecturer, int>, CacheService<TaskLecturer, int>>();
+        services.AddSingleton<ICacheService<TaskReport, int>, CacheService<TaskReport, int>>();
+        services.AddSingleton<ICacheService<User, Guid>, CacheService<User, Guid>>();
+        services.AddSingleton<ICacheService<Role, Guid>, CacheService<Role, Guid>>();
+        services.AddSingleton<ICacheService<Attachment, int>, CacheService<Attachment, int>>();
+        services.AddSingleton<ICacheService<Evidence, int>, CacheService<Evidence, int>>();
         #endregion
 
         return services;
