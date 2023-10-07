@@ -37,12 +37,12 @@ public static class DependencyInjection
         #endregion
 
         #region Distributed Cache
-        services.AddSingleton<ICacheService<Subject, string>, CacheService<Subject, string>>();
-        services.AddSingleton<ICacheService<Department, string>, CacheService<Department, string>>();
-        services.AddSingleton<ICacheService<Lecturer, string>, CacheService<Lecturer, string>>();
-        services.AddSingleton<ICacheService<Semester, string>, CacheService<Semester, string>>();
-        services.AddSingleton<ICacheService<User, string>, CacheService<User, string>>();
-        services.AddSingleton<ICacheService<Role, string>, CacheService<Role, string>>();
+        services.AddSingleton<ICacheService<Subject>, CacheService<Subject>>();
+        services.AddSingleton<ICacheService<Department>, CacheService<Department>>();
+        services.AddSingleton<ICacheService<Lecturer>, CacheService<Lecturer>>();
+        services.AddSingleton<ICacheService<Semester>, CacheService<Semester>>();
+        services.AddSingleton<ICacheService<User>, CacheService<User>>();
+        services.AddSingleton<ICacheService<Role>, CacheService<Role>>();
         //services.AddSingleton<ICacheService<Task, int>, CacheService<Task, int>>();
         //services.AddSingleton<ICacheService<TaskActivity, int>, CacheService<TaskActivity, int>>();
         //services.AddSingleton<ICacheService<TaskLecturer, int>, CacheService<TaskLecturer, int>>();

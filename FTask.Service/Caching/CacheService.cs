@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace FTask.Service.Caching
 {
-    public class CacheService<T, TKey> : ICacheService<T, TKey> where T : class
+    public class CacheService<T> : ICacheService<T> where T : class
     {
         private readonly IDistributedCache _distributedCache;
 
@@ -12,9 +12,9 @@ namespace FTask.Service.Caching
             _distributedCache = distributedCache;
         }
 
-        public async Task<T?> GetAsync(TKey id)
+        public async Task<T?> GetAsync(string key)
         {
-            string cacheData = await _distributedCache.GetStringAsync(id.ToString());
+            string cacheData = await _distributedCache.GetStringAsync(key.ToString());
 
             if (cacheData is null)
             {
@@ -25,16 +25,29 @@ namespace FTask.Service.Caching
             return deserializedData;
         }
 
-        public async Task RemoveAsync(TKey id)
+        public async Task<T[]> GetAsyncArray(string key)
         {
-            await _distributedCache.RemoveAsync(id.ToString());
+            string cacheData = await _distributedCache.GetStringAsync(key.ToString());
+
+            if (cacheData is null)
+            {
+                return null;
+            }
+
+            T[] deserializedData = JsonConvert.DeserializeObject<T[]>(cacheData);
+            return deserializedData;
         }
 
-        public async Task SetAsync<T>(TKey id, T entity)
+        public async Task RemoveAsync(string key)
+        {
+            await _distributedCache.RemoveAsync(key.ToString());
+        }
+
+        public async Task SetAsync<T>(string key, T entity)
         {
             string cacheData = JsonConvert.SerializeObject(entity);
 
-            await _distributedCache.SetStringAsync(id.ToString(), cacheData);
+            await _distributedCache.SetStringAsync(key.ToString(), cacheData);
         }
     }
 }

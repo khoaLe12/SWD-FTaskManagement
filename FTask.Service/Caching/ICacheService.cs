@@ -2,10 +2,11 @@
 
 namespace FTask.Service.Caching
 {
-    public interface ICacheService<T, TKey> where T : class
+    public interface ICacheService<T> where T : class
     {
-        Task<T?> GetAsync(TKey id);
-        Task SetAsync<T>(TKey id, T entity);
-        Task RemoveAsync(TKey id);
+        Task<T?> GetAsync(string key);
+        Task<T[]> GetAsyncArray(string key);
+        Task SetAsync<T>(string key, T entity);
+        Task RemoveAsync(string key);
     }
 }
