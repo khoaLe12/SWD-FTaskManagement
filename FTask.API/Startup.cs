@@ -282,8 +282,7 @@ namespace FTask.API
 
             services.AddStackExchangeRedisCache(option =>
             {
-                option.Configuration = Configuration.GetConnectionString(Configuration["Redis:RedisURL"]!);
-                option.InstanceName = Configuration["Redis:InstanceName"];
+                option.Configuration = Configuration["Redis:RedisURL"];
             });
         }
 

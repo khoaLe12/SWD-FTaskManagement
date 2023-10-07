@@ -37,18 +37,18 @@ public static class DependencyInjection
         #endregion
 
         #region Distributed Cache
-        services.AddSingleton<ICacheService<Subject, int>, CacheService<Subject, int>>();
-        services.AddSingleton<ICacheService<Department, int>, CacheService<Department, int>>();
-        services.AddSingleton<ICacheService<Lecturer, Guid>, CacheService<Lecturer, Guid>>();
-        services.AddSingleton<ICacheService<Semester, int>, CacheService<Semester, int>>();
-        services.AddSingleton<ICacheService<Task, int>, CacheService<Task, int>>();
-        services.AddSingleton<ICacheService<TaskActivity, int>, CacheService<TaskActivity, int>>();
-        services.AddSingleton<ICacheService<TaskLecturer, int>, CacheService<TaskLecturer, int>>();
-        services.AddSingleton<ICacheService<TaskReport, int>, CacheService<TaskReport, int>>();
-        services.AddSingleton<ICacheService<User, Guid>, CacheService<User, Guid>>();
-        services.AddSingleton<ICacheService<Role, Guid>, CacheService<Role, Guid>>();
-        services.AddSingleton<ICacheService<Attachment, int>, CacheService<Attachment, int>>();
-        services.AddSingleton<ICacheService<Evidence, int>, CacheService<Evidence, int>>();
+        services.AddSingleton<ICacheService<Subject, string>, CacheService<Subject, string>>();
+        services.AddSingleton<ICacheService<Department, string>, CacheService<Department, string>>();
+        services.AddSingleton<ICacheService<Lecturer, string>, CacheService<Lecturer, string>>();
+        services.AddSingleton<ICacheService<Semester, string>, CacheService<Semester, string>>();
+        services.AddSingleton<ICacheService<User, string>, CacheService<User, string>>();
+        services.AddSingleton<ICacheService<Role, string>, CacheService<Role, string>>();
+        //services.AddSingleton<ICacheService<Task, int>, CacheService<Task, int>>();
+        //services.AddSingleton<ICacheService<TaskActivity, int>, CacheService<TaskActivity, int>>();
+        //services.AddSingleton<ICacheService<TaskLecturer, int>, CacheService<TaskLecturer, int>>();
+        //services.AddSingleton<ICacheService<TaskReport, int>, CacheService<TaskReport, int>>();
+        //services.AddSingleton<ICacheService<Attachment, int>, CacheService<Attachment, int>>();
+        //services.AddSingleton<ICacheService<Evidence, int>, CacheService<Evidence, int>>();
         #endregion
 
         return services;
