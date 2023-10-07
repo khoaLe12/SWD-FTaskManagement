@@ -36,6 +36,7 @@ public static class DependencyInjection
         services.AddSingleton<ICheckSemesterPeriod, CheckSemesterPeriod>();
         #endregion
 
+
         #region Distributed Cache
         services.AddSingleton<ICacheService<Subject>, CacheService<Subject>>();
         services.AddSingleton<ICacheService<Department>, CacheService<Department>>();

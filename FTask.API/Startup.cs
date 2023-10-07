@@ -262,6 +262,13 @@ namespace FTask.API
                         .AllowAnyMethod();
                 });
             });*/
+            services.AddCors(options =>
+            {
+                options.AddPolicy("All", policy =>
+                {
+                    policy.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+                });
+            });
 
             services.AddHangfire(configuration =>
             {
@@ -338,7 +345,7 @@ namespace FTask.API
             // app.UseRateLimiter();
             // app.UseRequestLocalization();
 
-            //app.UseCors("ClientPermission");
+            app.UseCors("All");
 
             app.UseAuthentication();
 
